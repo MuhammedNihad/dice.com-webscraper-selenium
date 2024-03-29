@@ -9,6 +9,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 options = webdriver.ChromeOptions()
+options.add_extension('./ublock-origin.crx')
 options.add_argument("--disable-popup-blocking")
 driver=webdriver.Chrome(options=options)
 driver.get("https://www.dice.com/dashboard/login")
@@ -30,8 +31,6 @@ except Exception as e:
     print(f"Error closing SMS pop-up: {str(e)}")
 
 time.sleep(5)
-popup=driver.find_element(By.CLASS_NAME,"fe-button-leter")
-popup.click()
 
 if driver.current_url=="https://www.dice.com/home/home-feed":
     print("login sucessfull")
